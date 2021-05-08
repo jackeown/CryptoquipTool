@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptoquip Solving Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="PuzzleEntry">
+        <h1>A Tool to Solve a CryptoQuip Puzzle (Substitution Cipher)</h1>
+        <h2>Enter Puzzle Text</h2>
+        <textarea type="text" id="puzzleInput" placeholder="Enter Cryptoquip here..."></textarea><br><br>
+        <button>Submit Puzzle</button>
+    </div>
+
+
+    <div id="PuzzleSolver" class="hidden">
+
+        <div id="puzzleTextDiv"></div>
+        <div id="subDiv"></div>
+
+        <input type="text" id="subInput">
+
+    </div>
+    
+
+
+    <div id="PuzzleCongrats" class="hidden">
+        <h1>Congratulations!!!</h1>
+        <p id="solved"></p>
+    </div>
+
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
