@@ -1,5 +1,6 @@
 :root{
     --fontSize: 20pt;
+    font-family:Roboto;
 }
 
 body, input, textarea{
