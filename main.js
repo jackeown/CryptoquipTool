@@ -135,12 +135,13 @@ function getRandomPuzzle(){
 
 
 
+window.jokes = ["Sorry. Puzzles currently can't be loaded :("]
+
 fetch('/jokes.json').then(x=>x.json()).then(function(jokes) {
     window.jokes = jokes;
 })
 
 
-window.jokes = ["Sorry. Puzzles currently can't be loaded :("]
 
 
 
