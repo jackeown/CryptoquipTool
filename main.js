@@ -8,12 +8,13 @@ for(let letter of letters){
 
 let puzzleEntry = document.querySelector("#PuzzleEntry")
 let puzzleInput = document.querySelector("#puzzleInput");
-let puzzleButton = document.querySelector("#PuzzleEntry > button");
+let puzzleButton = document.querySelector("#submitPuzzle");
 
 let puzzleSolver = document.querySelector("#PuzzleSolver");
 let puzzleTextDiv = document.querySelector("#puzzleTextDiv");
 let subDiv = document.querySelector("#subDiv")
 let subInput = document.querySelector("#subInput")
+let randomPuzzle = document.querySelector("#randomPuzzle")
 
 let puzzleCongrats = document.querySelector("#PuzzleCongrats");
 
@@ -28,6 +29,36 @@ puzzleButton.addEventListener("click", function(e){
     updateSub();
     subInput.focus();
 });
+
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items An array containing the items.
+ */
+ function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+function joke2Puzzle(joke){
+    joke = joke.toUpperCase();
+    let shuffled = Array.from(window.letters);
+    shuffle(shuffled);
+
+    let map = {};
+    for (let i=0; i<window.letters.length; i++){
+        map[window.letters[i]] = shuffled[i];
+    }
+
+    return Array.from(joke).map(x=>(Object.keys(map).includes(x))?map[x]:x).join('');
+}
+
 
 
 function applySub(sub, puzzle){
@@ -89,6 +120,29 @@ function detectSolved(){
         document.querySelector("#solved").innerHTML = applySub(sub, puzzle);
     }
 }
+
+
+
+function getRandomPuzzle(){
+    let index = Math.floor(Math.random() * window.jokes.length)
+    let joke = window.jokes[index];
+    console.log(joke);
+    let puzzle = joke2Puzzle(joke);
+    console.log(puzzle);
+    puzzleInput.innerHTML = puzzle;
+    // puzzleInput.value = joke2Puzzle(joke);
+}
+
+
+
+fetch('/jokes.json').then(x=>x.json()).then(function(jokes) {
+    window.jokes = jokes;
+})
+
+
+window.jokes = ["Sorry. Puzzles currently can't be loaded :("]
+
+
 
 
 
